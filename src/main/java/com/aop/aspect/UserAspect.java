@@ -30,12 +30,12 @@ public class UserAspect {
     }
 
     @AfterThrowing(pointcut = "execution(* com.aop.service.UserService.createUser(..))", throwing = "error")
-    public void createUserThrowing(JoinPoint joinPoint, Throwable error){
+    public void createUserThrowing(JoinPoint joinPoint, Throwable error) throws Throwable{
         System.err.println("AfterThrowing " + error);
     }
 
     @Around("createUserPointcut()")
-    public void createUserAround(ProceedingJoinPoint proceedingJoinPoint) throws Throwable{
+    public void createUserAround(ProceedingJoinPoint proceedingJoinPoint){
         System.err.println("Around start");
         Object[] args = proceedingJoinPoint.getArgs();
 
